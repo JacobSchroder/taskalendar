@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { getWeekDates } from './functions';
 
 interface WeekViewProps {
@@ -8,15 +8,17 @@ interface WeekViewProps {
 export default function WeekView({ date }: WeekViewProps) {
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const weekDates = getWeekDates(date);
-  const days = weekDates.map((day) => day.format('ddd'));
 
   return (
-    <div className='h-full overflow-auto'>
+    <div className='h-full overflow-auto select-none'>
       <div className='flex border-b sticky left-0 top-0 bg-background'>
         <div className='w-20'></div>
         {weekDates.map((day, index) => (
           <div key={index} className='flex-1 text-center p-1 border-l'>
-            <span className='font-semibold'>{days[index]}</span>{' '}
+            {day.isSame(dayjs(), 'day') && (
+              <span className='w-2 h-2 bg-primary rounded-full inline-block mr-2' />
+            )}
+            <span className='font-semibold'>{day.format('ddd')}</span>{' '}
             <span className='text-muted-foreground'>{day.format('D')}</span>
           </div>
         ))}
