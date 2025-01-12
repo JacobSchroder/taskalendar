@@ -6,10 +6,9 @@ interface WeekViewProps {
 }
 
 export default function WeekView({ date }: WeekViewProps) {
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const hours = Array.from({ length: 24 }, (_, i) => i);
-
   const weekDates = getWeekDates(date, { startOfWeek: 'monday' });
+  const days = weekDates.map((day) => day.format('ddd'));
 
   return (
     <div className='h-full overflow-auto'>
