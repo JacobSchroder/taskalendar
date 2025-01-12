@@ -10,16 +10,9 @@ interface TopMenuProps {
   currentDate: Dayjs;
   onViewChange: (view: CalendarView) => void;
   onDateChange: (date: Dayjs) => void;
-  children?: React.ReactNode;
 }
 
-export default function TopMenu({
-  view,
-  currentDate,
-  onViewChange,
-  onDateChange,
-  children,
-}: TopMenuProps) {
+export default function TopMenu({ view, currentDate, onViewChange, onDateChange }: TopMenuProps) {
   const formatDate = (date: Dayjs) => {
     return date.format('MMMM D, YYYY');
   };
@@ -37,7 +30,6 @@ export default function TopMenu({
   return (
     <div className='flex justify-between items-center p-4 bg-background border-b'>
       <div className='flex items-center'>
-        {children}
         <Button variant='ghost' size='icon' onClick={handlePrevious}>
           <ChevronLeft className='h-4 w-4' />
         </Button>
