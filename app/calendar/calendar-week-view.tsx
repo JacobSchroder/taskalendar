@@ -7,7 +7,7 @@ interface WeekViewProps {
 
 export default function WeekView({ date }: WeekViewProps) {
   const hours = Array.from({ length: 24 }, (_, i) => i);
-  const weekDates = getWeekDates(date, { startOfWeek: 'monday' });
+  const weekDates = getWeekDates(date);
   const days = weekDates.map((day) => day.format('ddd'));
 
   return (

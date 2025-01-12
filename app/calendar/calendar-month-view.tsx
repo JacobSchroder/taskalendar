@@ -1,26 +1,15 @@
 import { Dayjs } from 'dayjs';
+import { getMonthDays, getWeekDates } from './functions';
 
 interface MonthViewProps {
   date: Dayjs;
 }
 
 export default function MonthView({ date }: MonthViewProps) {
-  const daysInMonth = date.endOf('month').date();
-  const firstDayOfMonth = date.startOf('month').day();
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const weekDates = getWeekDates(date.startOf('month'));
+  const days = weekDates.map((day) => day.format('ddd'));
 
-  const getMonthDays = () => {
-    const monthDays = [];
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      monthDays.push(null);
-    }
-    for (let i = 1; i <= daysInMonth; i++) {
-      monthDays.push(i);
-    }
-    return monthDays;
-  };
-
-  const monthDays = getMonthDays();
+  const monthDays = getMonthDays(date);
 
   return (
     <div className='h-full overflow-auto p-4'>
