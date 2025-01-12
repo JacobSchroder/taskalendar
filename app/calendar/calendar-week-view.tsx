@@ -12,12 +12,12 @@ export default function WeekView({ date }: WeekViewProps) {
 
   return (
     <div className='h-full overflow-auto'>
-      <div className='flex border-b'>
+      <div className='flex border-b sticky left-0 top-0 bg-background'>
         <div className='w-20'></div>
         {weekDates.map((day, index) => (
-          <div key={index} className='flex-grow text-center p-2'>
-            <div className='font-semibold'>{days[index]}</div>
-            <div className='text-sm text-muted-foreground'>{day.format('D')}</div>
+          <div key={index} className='flex-1 text-center p-1 border-l'>
+            <span className='font-semibold'>{days[index]}</span>{' '}
+            <span className='text-muted-foreground'>{day.format('D')}</span>
           </div>
         ))}
       </div>
@@ -25,7 +25,7 @@ export default function WeekView({ date }: WeekViewProps) {
         <div key={hour} className='flex border-b min-h-[60px]'>
           <div className='w-20 p-2 text-right text-sm text-muted-foreground'>{hour}:00</div>
           {weekDates.map((_, index) => (
-            <div key={index} className='flex-grow border-l p-2'></div>
+            <div key={index} className='flex-1 border-l p-2'></div>
           ))}
         </div>
       ))}
