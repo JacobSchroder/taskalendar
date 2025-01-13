@@ -1,41 +1,21 @@
-'use client';
-
-import dayjs, { Dayjs } from 'dayjs';
-import { useState } from 'react';
-import DayView from './calendar/calendar-day-view';
-import MonthView from './calendar/calendar-month-view';
+'use server';
+import dayjs from 'dayjs';
+import { Suspense } from 'react';
 import Sidebar from './calendar/calendar-task-sidebar';
 import TopMenu from './calendar/calendar-top-menu';
+import CalendarView from './calendar/calendar-view';
 import WeekView from './calendar/calendar-week-view';
 
-type CalendarView = 'day' | 'week' | 'month';
-
-export default function Calendar() {
-  const [view, setView] = useState<CalendarView>('week');
-  const [currentDate, setCurrentDate] = useState(dayjs());
-
-  const handleViewChange = (newView: CalendarView) => {
-    setView(newView);
-  };
-
-  const handleDateChange = (date: Dayjs) => {
-    setCurrentDate(date);
-  };
-
+export default async function Calendar() {
   return (
     <div className='flex flex-row h-screen pt-12 overflow-hidden'>
       <Sidebar />
       <div className='flex flex-col h-screen flex-grow'>
-        <TopMenu
-          view={view}
-          currentDate={currentDate}
-          onViewChange={handleViewChange}
-          onDateChange={handleDateChange}
-        />
+        <TopMenu />
         <div className='flex-grow overflow-auto'>
-          {view === 'day' && <DayView />}
-          {view === 'week' && <WeekView date={currentDate} />}
-          {view === 'month' && <MonthView date={currentDate} />}
+          <Suspense fallback={<WeekView date={dayjs()} />}>
+            <CalendarView />
+          </Suspense>
         </div>
       </div>
     </div>
