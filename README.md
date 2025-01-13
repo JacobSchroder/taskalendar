@@ -4,7 +4,6 @@
 
 ## Feature ideas:
 
-- Get started without lgging in (saves locally) - prompt to login in order to enable sync with cloud
 - Each "day box" in the month calendar view has a "timeline" of the scheduled tasks (in "pill" form) that day (hover to see details)
 - From all 3 views you can quicly access a specific task to see/edit details, start timetracking, etc.
 - "non-fixed" Recurring tasks: Add task option to be prompted about next occurence when the previous one is completed.

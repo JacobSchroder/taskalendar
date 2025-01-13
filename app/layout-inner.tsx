@@ -1,8 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import TopNav from '@/components/top-nav';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Moon, Sun } from 'lucide-react';
 import localFont from 'next/font/local';
 import { useState } from 'react';
 import { themeContext } from './theme-context';
@@ -35,12 +34,7 @@ export default function RootLayoutInner({
     <themeContext.Provider value={theme}>
       <QueryClientProvider client={queryClient}>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${theme}`}>
-          <nav className='flex justify-between items-center h-12 px-4 bg-accent border-b fixed top-0 left-0 right-0'>
-            <div>Taskalendar</div>
-            <Button aria-label='Theme' variant='ghost' size='icon' onClick={handleThemeChange}>
-              {theme === 'dark' ? <Sun className='h-4 w-4' /> : <Moon className='h-4 w-4' />}
-            </Button>
-          </nav>
+          <TopNav theme={theme} handleThemeChange={handleThemeChange} />
           {children}
         </body>
       </QueryClientProvider>
