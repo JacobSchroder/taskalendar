@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs';
+import { CALENDAR_CONFIG } from './calendar-config';
 import { getWeekDates } from './functions';
 
 interface WeekViewProps {
@@ -24,7 +25,7 @@ export default function WeekView({ date }: WeekViewProps) {
         ))}
       </div>
       {hours.map((hour) => (
-        <div key={hour} className='flex border-b h-[80px]'>
+        <div key={hour} className={`flex border-b h-[${CALENDAR_CONFIG.hourBoxHeight}px]`}>
           <div className='w-20 p-2 text-right text-sm text-muted-foreground'>{hour}:00</div>
           {weekDates.map((_, index) => (
             <div key={index} className='flex-1 border-l p-2'></div>
