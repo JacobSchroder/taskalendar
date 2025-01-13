@@ -10,7 +10,7 @@ export default function WeekView({ date }: WeekViewProps) {
   const weekDates = getWeekDates(date);
 
   return (
-    <div className='h-full overflow-auto select-none'>
+    <div className='h-full overflow-auto select-none pb-24'>
       <div className='flex border-b sticky left-0 top-0 bg-background'>
         <div className='w-20'></div>
         {weekDates.map((day, index) => (
