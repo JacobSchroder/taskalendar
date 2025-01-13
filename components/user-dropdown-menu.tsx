@@ -10,10 +10,8 @@ import UserAvatar from './user-avatar';
 export default function UserDropdownMenu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='flex items-center px-2'>
-        <div className='h-8 w-8'>
-          <UserAvatar />
-        </div>
+      <DropdownMenuTrigger className='h-8 w-8 rounded-full focus-visible:ring-2'>
+        <UserAvatar />
       </DropdownMenuTrigger>
       <DropdownMenuContent side='bottom' align='end'>
         <DropdownMenuItem>

@@ -20,7 +20,8 @@ export default function LoginPage() {
               />
               Sign in with GitHub
             </SignIn>
-            <SignIn size='lg' variant='secondary' className='w-full' provider='google'>
+            <div className='text-muted-foreground text-center'>Google sign-in coming soon...</div>
+            <SignIn disabled size='lg' variant='secondary' className='w-full' provider='google'>
               <Image
                 src='/assets/icons/google.svg'
                 alt='Google'
