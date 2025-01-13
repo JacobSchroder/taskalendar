@@ -1,26 +1,18 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useTasks } from '@/hooks/useTasks';
 import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
 
-interface Task {
-  id: string;
-  title: string;
-}
-
 export default function Sidebar() {
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: '1', title: 'Toggle Dark mode' },
-    { id: '2', title: 'Project Deadline' },
-    { id: '3', title: 'Lunch with Client' },
-  ]);
-  const [newTask, setNewTask] = useState('');
+  const { tasks } = useTasks();
 
+  const [newTask, setNewTask] = useState('');
   const addTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, { id: Date.now().toString(), title: newTask.trim() }]);
-      setNewTask('');
-    }
+    console.log('addTask', newTask);
+    setNewTask('');
   };
 
   return (
@@ -39,7 +31,7 @@ export default function Sidebar() {
         </Button>
       </div>
       <div className='flex-grow overflow-auto'>
-        {tasks.map((task) => (
+        {tasks.data?.map((task) => (
           <div key={task.id} className='bg-secondary p-2 mb-2 rounded cursor-move' draggable>
             {task.title}
           </div>
