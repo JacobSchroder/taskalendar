@@ -14,7 +14,7 @@ export default function WeekView({ date }: WeekViewProps) {
       <div className='flex border-b sticky left-0 top-0 bg-background'>
         <div className='w-20'></div>
         {weekDates.map((day, index) => (
-          <div key={index} className='flex-1 text-center p-1 border-l'>
+          <div key={index} className='flex-1 text-center p-1'>
             {day.isSame(dayjs(), 'day') && (
               <span className='w-2 h-2 bg-primary rounded-full inline-block mr-2' />
             )}
@@ -24,7 +24,7 @@ export default function WeekView({ date }: WeekViewProps) {
         ))}
       </div>
       {hours.map((hour) => (
-        <div key={hour} className='flex border-b min-h-[60px]'>
+        <div key={hour} className='flex border-b h-[80px]'>
           <div className='w-20 p-2 text-right text-sm text-muted-foreground'>{hour}:00</div>
           {weekDates.map((_, index) => (
             <div key={index} className='flex-1 border-l p-2'></div>
