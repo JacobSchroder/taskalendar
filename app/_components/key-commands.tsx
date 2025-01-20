@@ -9,7 +9,10 @@ export function KeyCommands() {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       const url = new URL(window.location.href);
-      if (e.key === '+' && e.target === document.body && url.pathname !== '/tasks/new') {
+      // If no element is focused it is safe to trigger the key command.
+      // If we are on the home page, we can trigger the key command without checking for focus, since there are no input fields.
+      if (e.target !== document.body && url.pathname !== '/') return;
+      if (e.key === '+' && url.pathname !== '/tasks/new') {
         e.preventDefault();
         router.push('/tasks/new');
       }
