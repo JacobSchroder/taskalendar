@@ -16,6 +16,18 @@ export function KeyCommands() {
         e.preventDefault();
         router.push('/tasks/new');
       }
+      if (e.key === '1' && url.pathname === '/') {
+        e.preventDefault();
+        router.push('?view=day');
+      }
+      if (e.key === '2' && url.pathname === '/') {
+        e.preventDefault();
+        router.push('?view=week');
+      }
+      if (e.key === '3' && url.pathname === '/') {
+        e.preventDefault();
+        router.push('?view=month');
+      }
     };
     document.addEventListener('keydown', down);
     return () => document.removeEventListener('keydown', down);
