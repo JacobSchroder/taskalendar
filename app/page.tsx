@@ -1,6 +1,7 @@
 'use server';
 import dayjs from 'dayjs';
 import { Suspense } from 'react';
+import { KeyCommands } from './_components/key-commands';
 import Sidebar from './calendar/calendar-task-sidebar';
 import TopMenu from './calendar/calendar-top-menu';
 import CalendarView from './calendar/calendar-view';
@@ -13,6 +14,7 @@ export default async function Calendar() {
       <div className='flex flex-col h-screen flex-grow'>
         <TopMenu />
         <div className='flex-grow overflow-auto'>
+          <KeyCommands />
           <Suspense fallback={<WeekView date={dayjs()} />}>
             <CalendarView />
           </Suspense>
