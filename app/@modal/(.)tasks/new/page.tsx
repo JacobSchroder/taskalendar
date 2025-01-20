@@ -21,7 +21,7 @@ export default function NewTaskModal() {
         <DialogHeader>
           <DialogTitle>Add New Task</DialogTitle>
         </DialogHeader>
-        <NewTask onSubmit={handleClose} />
+        <NewTask onSuccess={handleClose} />
       </DialogContent>
     </Dialog>
   );

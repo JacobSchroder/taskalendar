@@ -1,12 +1,13 @@
 'use server';
-import { TaskCard } from '@/components/task-card';
 import { buttonVariants } from '@/components/ui/button';
 import { listTasks } from '@/server/resolvers/tasks/list-tasks';
 import { PlusCircle } from 'lucide-react';
 
 import Link from 'next/link';
+import { Suspense } from 'react';
+import SidebarClient from './calendar-task-sidebar.client';
 export default async function Sidebar() {
-  const tasks = await listTasks();
+  const initialTasks = await listTasks();
 
   return (
     <div className='w-[300px] h-full bg-background border-r p-4 flex flex-col'>
@@ -20,9 +21,9 @@ export default async function Sidebar() {
           New Task
         </Link>
       </div>
-      <div className='flex-grow overflow-auto'>
-        {tasks?.map((task) => <TaskCard key={task.id} task={task} />)}
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SidebarClient initialTasks={initialTasks} />
+      </Suspense>
     </div>
   );
 }
