@@ -8,7 +8,7 @@ import WeekView from './calendar/calendar-week-view';
 
 export default async function Calendar() {
   return (
-    <div className='flex flex-row h-screen pt-12 overflow-hidden'>
+    <div className='flex flex-row overflow-hidden'>
       <Sidebar />
       <div className='flex flex-col h-screen flex-grow'>
         <TopMenu />

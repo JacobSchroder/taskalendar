@@ -11,14 +11,19 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   const session = await auth();
   return (
     <SessionProvider basePath={BASE_PATH} session={session}>
       <html lang='en'>
-        <RootLayoutInner>{children}</RootLayoutInner>
+        <RootLayoutInner>
+          {children}
+          {modal}
+        </RootLayoutInner>
       </html>
     </SessionProvider>
   );

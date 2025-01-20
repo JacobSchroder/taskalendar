@@ -33,7 +33,9 @@ export default function RootLayoutInner({
   return (
     <themeContext.Provider value={theme}>
       <QueryClientProvider client={queryClient}>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased ${theme}`}>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[auto_1fr] antialiased ${theme}`}
+        >
           <TopNav theme={theme} handleThemeChange={handleThemeChange} />
           {children}
         </body>

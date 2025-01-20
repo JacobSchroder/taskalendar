@@ -15,7 +15,7 @@ export default function TopNav({
   const session = useSession();
 
   return (
-    <nav className='flex justify-between items-center h-12 px-4 bg-accent border-b fixed top-0 left-0 right-0'>
+    <nav className='flex justify-between items-center h-12 px-4 bg-accent border-b'>
       <div>Taskalendar</div>
       <div className='flex items-center gap-2'>
         <Button aria-label='Theme' variant='ghost' size='icon' onClick={handleThemeChange}>

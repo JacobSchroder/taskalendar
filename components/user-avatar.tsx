@@ -11,9 +11,6 @@ export default function UserAvatar({
   className?: string;
 }) {
   const session = useSession();
-
-  console.dir(session);
-
   if (!session?.data?.user) return null;
 
   return (
