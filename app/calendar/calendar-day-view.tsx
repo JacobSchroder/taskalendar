@@ -6,7 +6,7 @@ export default function DayView() {
   return (
     <div className='h-full overflow-auto select-none pb-24'>
       {hours.map((hour) => (
-        <div key={hour} className={`flex border-b h-[${CALENDAR_CONFIG.hourBoxHeight}px]`}>
+        <div key={hour} style={{ height: CALENDAR_CONFIG.hourBoxHeight }} className='flex border-b'>
           <div className='w-20 p-2 text-right text-sm text-muted-foreground'>{hour}:00</div>
           <div className='flex-grow p-2'></div>
         </div>
