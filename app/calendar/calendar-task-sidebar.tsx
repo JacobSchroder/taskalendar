@@ -2,10 +2,10 @@
 import { buttonVariants } from '@/components/ui/button';
 import { listTasks } from '@/server/resolvers/tasks/list-tasks';
 import { PlusCircle } from 'lucide-react';
-
 import Link from 'next/link';
 import { Suspense } from 'react';
 import SidebarClient from './calendar-task-sidebar.client';
+
 export default async function Sidebar() {
   const initialTasks = await listTasks();
 

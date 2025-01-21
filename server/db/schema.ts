@@ -1,5 +1,5 @@
 import { sql } from 'drizzle-orm';
-import { integer, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { boolean, integer, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 const createdAt = timestamp({ mode: 'string', withTimezone: true })
   .notNull()
@@ -17,5 +17,6 @@ export const tasksTable = pgTable('tasks', {
   title: varchar({ length: 255 }).notNull(),
   text: text().notNull(),
   userId: integer().references(() => usersTable.id),
+  draft: boolean().notNull().default(false),
   createdAt,
 });

@@ -1,19 +1,14 @@
 'use client';
 import { Card, CardTitle } from '@/components/ui/card';
-import { deleteTask } from '@/server/actions/delete-task';
+import { TaskRes } from '@/hooks/useTasks';
+import { cn } from '@/lib/utils';
+import { deleteTask } from '@/server/actions/task';
 import { ListTasksResponse } from '@/server/resolvers/tasks/list-tasks';
 import { useQueryClient } from '@tanstack/react-query';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
 
-// TODO: use schema type def.
-type Task = {
-  id: number;
-  title: string;
-  text: string;
-};
-
-export function TaskCard({ task }: { task: Task }) {
+export function TaskCard({ task }: { task: TaskRes }) {
   const queryClient = useQueryClient();
 
   async function handleDelete() {
@@ -24,7 +19,7 @@ export function TaskCard({ task }: { task: Task }) {
   }
 
   return (
-    <Card className='flex justify-between'>
+    <Card className={cn('flex justify-between', task.loading && 'animate-pulse')}>
       <div className='p-2.5'>
         <CardTitle className='mb-2'>
           <div>{task.title}</div>
@@ -32,7 +27,12 @@ export function TaskCard({ task }: { task: Task }) {
         <p className='text-xs'>{task.text}</p>
       </div>
       <div className='p-1.5'>
-        <Button variant='ghost' className='p-1 h-6 w-6' onClick={handleDelete}>
+        <Button
+          variant='ghost'
+          className='p-1 h-6 w-6'
+          disabled={task.loading}
+          onClick={handleDelete}
+        >
           <X className='h-4 w-4' />
         </Button>
       </div>

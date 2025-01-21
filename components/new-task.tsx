@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { createTask } from '@/server/actions/create-task';
+import { createTask } from '@/server/actions/task';
 import { ListTasksResponse } from '@/server/resolvers/tasks/list-tasks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -17,19 +17,26 @@ export function NewTask({ onSuccess }: { onSuccess?: () => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (title) {
+      const tempId = Date.now() * -1;
       queryClient.setQueryData(['tasks'], (oldData: ListTasksResponse) => {
         return [
           {
-            id: Date.now() * -1, // fix this...
+            id: tempId,
             title,
             text: description,
+            draft: false,
+            loading: true,
           },
           ...oldData,
         ];
       });
       onSuccess?.();
       // optimistic update
-      await createTask({ title, text: description });
+      await createTask({ title, text: description, draft: false }).then((id) => {
+        queryClient.setQueryData(['tasks'], (oldData: ListTasksResponse) => {
+          return oldData.map((t) => (t.id === tempId ? { ...t, id, loading: false } : t));
+        });
+      });
     }
   };
 

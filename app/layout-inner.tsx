@@ -17,8 +17,6 @@ const geistMono = localFont({
   weight: '100 900',
 });
 
-const queryClient = new QueryClient();
-
 export default function RootLayoutInner({
   children,
 }: Readonly<{
@@ -29,6 +27,17 @@ export default function RootLayoutInner({
   const handleThemeChange = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
+
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 1000 * 10,
+          },
+        },
+      })
+  );
 
   return (
     <themeContext.Provider value={theme}>
