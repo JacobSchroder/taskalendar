@@ -10,13 +10,10 @@ export default async function Sidebar() {
   const initialTasks = await listTasks();
 
   return (
-    <div className='w-[300px] h-full bg-background border-r p-4 flex flex-col'>
-      <h2 className='text-lg font-semibold mb-4'>Tasks</h2>
-      <div className='mb-4'>
-        <Link
-          href='/tasks/new'
-          className={buttonVariants({ variant: 'default', size: 'default', className: 'w-full' })}
-        >
+    <div className='w-[320px] h-full bg-background border-r p-4 flex flex-col'>
+      <div className='flex justify-between items-center mb-2 border-b pb-2'>
+        <h2 className='text-lg font-semibold'>Tasks</h2>
+        <Link href='/tasks/new' className={buttonVariants({ variant: 'default', size: 'default' })}>
           <PlusCircle className='h-4 w-4' />
           New Task
         </Link>
